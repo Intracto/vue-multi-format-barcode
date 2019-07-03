@@ -1,0 +1,1 @@
+# vue-multi-format-barcode
