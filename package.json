@@ -1,0 +1,36 @@
+{
+  "name": "vue-multi-format-barcode",
+  "version": "0.0.1",
+  "description": "Multi-format 1D/2D barcode image processing component in Vue 2+, based on zxing-js library.",
+  "private": false,
+  "main": "index.js",
+  "scripts": {
+    "dev": "vue serve src/MultiFormatBarcode.vue",
+    "build": "bili src/MultiFormatBarcode.vue --format esm-min --format cjs-min"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Intracto/vue-multi-format-barcode.git"
+  },
+  "keywords": [
+    "vue",
+    "barcode",
+    "qr-code",
+    "scanner"
+  ],
+  "author": "Sead Memic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Intracto/vue-multi-format-barcode/issues"
+  },
+  "homepage": "https://github.com/Intracto/vue-multi-format-barcode#readme",
+  "dependencies": {
+    "@zxing/library": "^0.14.2"
+  },
+  "devDependencies": {
+    "bili": "^4.8.0"
+  }
+}

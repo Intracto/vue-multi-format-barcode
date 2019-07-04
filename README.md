@@ -34,3 +34,19 @@ In App.vue:
 ### FAQ
 
 --
+
+### Development / Contribution
+
+You'll need vue cli globally to debug the component.
+
+```bash
+npm install -g @vue/cli
+npm install -g @vue/cli-service-global
+```
+
+Start a development server for the component
+
+```bash
+vue serve MultiFormatBarcode.vue
+```
+
