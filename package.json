@@ -1,36 +1,33 @@
 {
   "name": "vue-multi-format-barcode",
-  "version": "0.0.1",
-  "description": "Multi-format 1D/2D barcode image processing component in Vue 2+, based on zxing-js library.",
-  "private": false,
-  "main": "index.js",
-  "scripts": {
-    "dev": "vue serve src/MultiFormatBarcode.vue",
-    "build": "bili src/MultiFormatBarcode.vue --format esm-min --format cjs-min"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/vue-multi-format-barcode.ssr.js",
+  "module": "dist/vue-multi-format-barcode.esm.js",
+  "unpkg": "dist/vue-multi-format-barcode.min.js",
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/**/*.vue"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Intracto/vue-multi-format-barcode.git"
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
-  "keywords": [
-    "vue",
-    "barcode",
-    "qr-code",
-    "scanner"
-  ],
-  "author": "Sead Memic",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Intracto/vue-multi-format-barcode/issues"
-  },
-  "homepage": "https://github.com/Intracto/vue-multi-format-barcode#readme",
   "dependencies": {
     "@zxing/library": "^0.14.2"
   },
   "devDependencies": {
-    "bili": "^4.8.0"
+    "cross-env": "^5.2.0",
+    "minimist": "^1.2.0",
+    "rollup": "^1.12.1",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-vue": "^5.0.0",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
   }
 }

@@ -14,7 +14,7 @@
   import {BrowserMultiFormatReader, BarcodeFormat, DecodeHintType} from '@zxing/library';
 
   export default {
-    name: "MultiFormatBarcode",
+    name: "VueMultiFormatBarcode",
     props: {
       width: {type: String, default: "1280"},
       height: {type: String, default: "720"},
