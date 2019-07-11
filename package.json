@@ -1,6 +1,6 @@
 {
   "name": "vue-multi-format-barcode",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/vue-multi-format-barcode.ssr.js",
   "module": "dist/vue-multi-format-barcode.esm.js",
