@@ -29,7 +29,7 @@ In App.vue:
 
 ### Props & Events
 
-```javascript
+```html
   <multi-format-barcode width="1280" heigth="720" @onDecode="getResult" />
 ```
 
