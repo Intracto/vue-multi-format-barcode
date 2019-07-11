@@ -1,8 +1,8 @@
 <template>
-    <div class="c-mfb-scanner">
-        <video id="scanner"
-               class="scanner"
-               ref="scanner"
+    <div class="c-mfb-scanner__wrapper">
+        <video id="mfb-scanner"
+               class="mfb-scanner"
+               ref="mfb-scanner"
                :width="width"
                :height="height"
         ></video>
@@ -11,66 +11,48 @@
 </template>
 
 <script>
-  import {BrowserMultiFormatReader, BarcodeFormat, DecodeHintType} from '@zxing/library';
+  // TODO BarcodeFormat, DecodeHintType should be loaded, when implementing hints with custom formats
+  import {BrowserMultiFormatReader} from '@zxing/library';
 
   export default {
     name: "VueMultiFormatBarcode",
     props: {
       width: {type: String, default: "1280"},
-      height: {type: String, default: "720"},
-      enableQrcode: {type: Boolean, default: true},
-      enableBarcode: {type: Boolean, default: true}
+      height: {type: String, default: "720"}
     },
     data() {
       return {
-        scanner: null,
-        hints: null
-      }
-    },
-    created() {
-      if (!this.enableBarcode) {
-        const formats = [BarcodeFormat.QR_CODE];
-        this.hints = new Map();
-        this.hints.set(DecodeHintType.POSSIBLE_FORMATS, formats);
+        scanner: null
       }
     },
     mounted() {
       this.initScanner();
     },
     methods: {
-      // init default scanner with QR and Barcode
-      // hints = null = instance loads all formats
+      // init default scanner with all possible formats
       initScanner() {
-        this.scanner = new BrowserMultiFormatReader(this.hints);
-        this.scanner.decodeFromInputVideoDevice(undefined, this.$refs.scanner).then((result) => {
-          this.getScannerResult(result);
+        this.scanner = new BrowserMultiFormatReader();
+        this.scanner.decodeFromInputVideoDevice(undefined, this.$refs['mfb-scanner']).then((result) => {
+          // Send the full results with all values
+          this.$emit('onDecode', result);
         }).catch((e) => {
           console.error(e);
         });
-      },
-
-      // get result
-      getScannerResult(result) {
-        this.$emit('result', result);
-      },
-
-      resetScanner() {
-        this.scanner.reset();
       }
     },
     beforeDestroy() {
-      this.resetScanner();
+      this.scanner.reset();
     }
   }
 </script>
 
 <style lang="scss">
-    .c-mfb-scanner {
+    .c-mfb-scanner__wrapper {
         position: relative;
         height: auto;
         overflow: hidden;
 
-        .scanner {
+        .mfb-scanner {
             max-width: 100%;
             object-fit: cover;
             border-radius: 4px;
@@ -91,29 +73,6 @@
             z-index: 3;
             animation: scanning 3s infinite;
         }
-    }
-
-    .c-flashlight-icon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 44px;
-    }
-
-    .c-error-manual {
-        padding-top: 1em;
-        padding-bottom: 1em;
-        border-top: 2px solid #efefef;
-    }
-
-    .btn-close {
-        position: absolute;
-        right: 10px;
-        top: 20px;
-    }
-
-    .ex-images {
-        max-width: 100%;
     }
 
     @keyframes scanning {
